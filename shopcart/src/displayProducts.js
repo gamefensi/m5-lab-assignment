@@ -5,7 +5,6 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-
 export function DisplayProducts(props) {
     const [show, setShow] = useState(false);
     const [showImge, setShowImge] = useState({});
@@ -19,16 +18,15 @@ export function DisplayProducts(props) {
         <div>
             <ListGroup>
                 {props.items.map((item) => (
-                    <ListGroupItem style={{ display: "block", padding: "10px" }} key={item.id} tag="a">
-                        <div className="row">
-                        <div style={{ marginLeft: "50px" }}>
+                    <ListGroupItem style={{ display: "block"}} key={item.id}>
+                        <div className="row" style={{padding: "10px 0 10px 50px"}}>
+                        <div>
                             {item.desc}
                         </div>
-                        <img onClick={() => handleShow(item)} style={{ margin: "10px 50px 0 50px", width: "150px", objectFit: "cover" }} className="img-fluid" src={item.image} alt={item.desc} />
+                        <img onClick={() => handleShow(item)} style={{ margin: "10px 50px 10px 0", width: "150px", objectFit: "cover" }} className="img-fluid" src={item.image} alt={item.desc} />
                         <div style={{display: "inline"}} className="col-2">
                             <p style={{ marginRight: "10px", width: "200px"}}>In Stock:</p>
                             <input style={{ marginRight: "10px", width: "50px", height: "50px", textAlign: "center" }} value={item.qty} disabled />
-                        </div>
                         </div>
 
 
@@ -38,6 +36,7 @@ export function DisplayProducts(props) {
                             <button
                                 id="minusBtn"
                                 type="button"
+                                className="btn btn-light"
                                 style={{ marginRight: "10px" }}
                                 onClick={() => props.handleSubFromCart(item, cart)}
                             >
@@ -50,6 +49,7 @@ export function DisplayProducts(props) {
                             <button
                                 id="addBtn"
                                 type="button"
+                                className="btn btn-light"
                                 style={{ marginRight: "10px" }}
                                 onClick={() => props.handleAddToCart(item, cart)}
                             >
@@ -58,13 +58,13 @@ export function DisplayProducts(props) {
                                     className="fas fa-sm"
                                 />
                             </button>
-
+                            </div>
                         </div>
 
                     </ListGroupItem>
                 ))}
             </ListGroup>
-            <Modal show={show} onHide={handleClose}>
+                <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>{showImge.desc}</Modal.Title>
                 </Modal.Header>
@@ -81,4 +81,9 @@ export function DisplayProducts(props) {
         </div>
     )
 }
+
+
+
+  
+
 

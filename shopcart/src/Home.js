@@ -1,16 +1,22 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Inventory } from "./products";
 import { DisplayProducts } from "./displayProducts";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Example } from './toasts';
+
+
 
 class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			Products: Inventory,
-			myCart: Inventory.cart
+			myCart: Inventory.cart,
+			renderAddToast: false,
+			renderRemoveToast: false
 		}
 	}
+	
 	handleSumItems = () => {
 		let total = this.state.Products.Stock.map((item) => {
 			return item.qty;
@@ -30,9 +36,12 @@ class Home extends Component {
 	handleAddToCart = (getItem, currentItems) => {
 		if (getItem.qty > 0) {
 			const newQty = getItem.qty--;
+			const newCartQty = getItem.cartQty++;
+			this.setState({ qty: newQty, cartQty: newCartQty });
 			currentItems.push(getItem);
-			this.setState({ qty: newQty });
+			this.setState({renderAddToast: !this.state.renderAddToast})
 			console.log(currentItems);
+			console.log(currentItems.getItem)
 		}
 	}
 
@@ -49,11 +58,14 @@ class Home extends Component {
 		let list = <DisplayProducts
 			items={this.state.Products.Stock}
 			cart={this.state.myCart}
+			// renderAddToast={this.state.renderAddToast}
+			// renderRemoveToast={this.state.renderAddToast}
 			handleAddToCart={this.handleAddToCart}
 			handleSubFromCart={this.handleSubFromCart}
 		/>
 		return (
 			<div>
+				{this.state.renderAddToast && <Example />}
 				{list}
 				<div className='m-5'>
 					<h3>Total Quantity: </h3>
@@ -64,6 +76,7 @@ class Home extends Component {
 		)
 	}
 }
+
 
 
 
