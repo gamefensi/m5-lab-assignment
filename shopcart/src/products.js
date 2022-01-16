@@ -8,7 +8,7 @@ export const Inventory = {
             desc: 'Unisex Cologne',
             ratings: 3.5,
             value: 0,
-            qty: 1
+            qty: 5
         },
         {
             id: 2,
@@ -16,7 +16,7 @@ export const Inventory = {
             desc: 'Apple iWatch',
             ratings: 5,
             value: 0,
-            qty: 1
+            qty: 10
         },
         {
             id: 3,
@@ -34,5 +34,6 @@ export const Inventory = {
             value: 0,
             qty: 1
         },
-    ]
+    ],
+    cart: []
 }

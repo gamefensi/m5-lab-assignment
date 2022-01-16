@@ -1,8 +1,9 @@
 import { Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { faHome, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Home from "./Home";
 import Cart from "./Cart";
+// import App from "./App";
 // import logo from './logo.svg';
 
 export function Nav(props) {
@@ -18,7 +19,7 @@ export function Nav(props) {
             <Link to="/Cart">
               <FontAwesomeIcon style={{ marginRight: "10px" }} icon={faShoppingCart} />
             </Link>
-            0 items
+            {props.cart.length} items
           </div>
         </div>
         {/* Routes */}
@@ -29,7 +30,7 @@ export function Nav(props) {
           />
           <Route
             path="/"
-            element={<Home items={props.items} />}
+            element={<Home />}
           />
         </Routes>
       </Router >
