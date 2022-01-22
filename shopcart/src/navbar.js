@@ -1,9 +1,10 @@
 import { Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faRegistered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Home from "./Home";
 import Cart from "./Cart";
-// import React, { useEffect } from 'react';
+import CheckOut from "./Checkout"
+import { DisplayProducts } from "./displayProducts";
+
 
 
 export function Nav(props) {
@@ -13,24 +14,42 @@ export function Nav(props) {
         {/* Navigation */}
         <div className="App-header d-flex flex-row align-items-center justify-content-between">
           <Link to="/">
-            <h1 style={{ display: "inline", color: "white", textDecoration:"none" }}> Shop 2 React</h1>
+            <h1 style={{ display: "inline", color: "white", textDecoration: "none" }}>
+              <span className="px-2">Shop 2</span>
+              <FontAwesomeIcon icon={faRegistered} className="fas fa-lg text-white" />
+              eact
+            </h1>
           </Link>
           <div style={{ display: "inline", fontSize: "12pt" }}>
             <Link to="/Cart">
-              <FontAwesomeIcon style={{ marginRight: "10px", color: "white"}} icon={faShoppingCart} />
+              <FontAwesomeIcon style={{ marginRight: "10px", color: "white" }} icon={faShoppingCart} />
             </Link>
-            <CartItemTotal items={props.items} /> items
+            {props.cartItemTotal()} items
           </div>
         </div>
+
         {/* Routes */}
         <Routes>
           <Route
             path="/Cart"
-            element={<Cart />}
+            element={<Cart
+              cartItemTotal={props.cartItemTotal}
+              items={props.items}
+            />}
+          />
+          <Route
+            path="/Checkout"
+            element={<CheckOut />}
           />
           <Route
             path="/"
-            element={<Home />}
+            element={
+              <DisplayProducts
+                items={props.items}
+                cart={props.items.cart}
+                handleAddToCart={props.handleAddToCart}
+                handleSubFromCart={props.handleSubFromCart}
+              />}
           />
         </Routes>
       </Router >
@@ -39,13 +58,3 @@ export function Nav(props) {
   );
 }
 
-function CartItemTotal(props) {
-  
-  let total = props.items.map((item) => {
-    return item.cartQty;
-  }).reduce((sum, item) => {
-    return sum + item;
-  });
-
-  return total
-  }

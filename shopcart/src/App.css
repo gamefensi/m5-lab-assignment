@@ -31,6 +31,10 @@
   color: #61dafb;
 }
 
+.card-text form {
+  width: 250px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -47,6 +51,10 @@
 
 a {
   text-decoration: none !important; 
+}
+
+li.list-group-item img:hover {
+  cursor: pointer;
 }
 
 /* #addBtn {

@@ -1,35 +1,27 @@
-import { Component } from "react";
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useState } from "react";
 import { Modal } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Inventory } from "./products";
 import { Link } from "react-router-dom";
 
 
-class Cart extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			myCart: Inventory.cart
-		}
-	}
-	render() {
 
-		return (
+export default function Cart(props) {
 
-			<div>
-				<div id="cartStatus" className="my-3">
-				{this.state.myCart.length === 0 ? (
+	return (
+
+		<div>
+			<div id="cartStatus" className="my-3">
+				{props.items.cart.length === 0 ? (
 					<h1 className="display-3">Cart is empty!</h1>
-				) : (<h1 className="display-3">Items for Checkout: </h1>)}
-				</div>
-				<DisplayCart
-					myCart={this.state.myCart}
-				/>
+				) : (<h1 className="display-3">Items in your cart:</h1>)}
 			</div>
-		)
-	}
+			<DisplayCart
+				myCart={props.items.cart}
+				cartItemTotal={props.cartItemTotal}
+			/>
+		</div>
+	)
 }
 
 function DisplayCart(props) {
@@ -48,13 +40,13 @@ function DisplayCart(props) {
 			<div>
 				<ListGroup>
 					{unique.map((item) => (
-						<ListGroupItem style={{ padding: "10px, 0, 10px, 50px", display: "block", }} key={item.id} tag="a">
-							<div>
-								<h4>{item.desc}</h4>
+						<ListGroupItem style={{ padding: "10px, 0, 10px, 50px", display: "block", }} key={item.id}>
+							<div style={{fontWeight: "bold"}}>
+								<img onClick={() => handleShow(item)} style={{ margin: "0 20px", width: "150px", objectFit: "cover" }} className="img-fluid" src={item.image} alt={item.desc} />
+								Quantity: {item.cartQty}
 							</div>
-							<img onClick={() => handleShow(item)} style={{ margin: "0 20px", width: "150px", objectFit: "cover" }} className="img-fluid" src={item.image} alt={item.desc} />
-							<div>
-								{item.cartQty} items in cart
+							<div style={{paddingLeft:"50px"}} >
+								<p>{item.desc}</p>
 							</div>
 						</ListGroupItem>
 					))}
@@ -73,26 +65,32 @@ function DisplayCart(props) {
 						<p><span className="text-dark">Ratings:</span> {showImge.ratings}/5</p>
 					</Modal.Body>
 				</Modal>
+				<Link to="/Checkout">
+					<button
+						id="checkOut"
+						href="/Checkout"
+						className="btn btn-primary my-3"
+					>
+						Check Out
+					</button>
+				</Link>
 			</div>
 		)
 	} else {
 		return (
 			<div>
 				<img src="./mini-empty-cart.png" className="img-fluid"></img>
-				<h3 className="text-muted"> There are no items in your cart. </h3>
+				<h3 className="text-muted"> There are {props.cartItemTotal()} items in your cart. </h3>
 				<Link to="/">
-				<button
-					id="backToHome"
-					href="/"
-					className="btn btn-dark"
-				>
-					Back to Store
-				</button>
+					<button
+						id="backToHome"
+						href="/"
+						className="btn btn-dark"
+					>
+						Back to Store
+					</button>
 				</Link>
-
 			</div>
 		)
 	}
 }
-
-export default Cart;
