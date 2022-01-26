@@ -28,20 +28,18 @@ function CheckOut() {
           </Card.Header>
           <Card.Body>
             <Card.Text>
-              <React.Fragment>
-                <h3>Please login using one of the following:</h3>
-                {/**Login Form */}
-                <LoginForm />
-                {/**FB Login Button */}
-                <FacebookLogin
-                  appId="620288089040861"
-                  autoLoad={false}
-                  fields="name,email,picture"
-                  score="public_profile,user_friends"
-                  callback={responseFacebook}
-                  icon="fa-facebook"
-                />
-              </React.Fragment>
+              <h3>Please login using one of the following:</h3>
+              {/**Login Form */}
+              <LoginForm />
+              {/**FB Login Button */}
+              <FacebookLogin
+                appId="620288089040861"
+                autoLoad={false}
+                fields="name,email,picture"
+                score="public_profile,user_friends"
+                callback={responseFacebook}
+                icon="fa-facebook"
+              />
             </Card.Text>
           </Card.Body>
         </Card>
@@ -53,7 +51,7 @@ function CheckOut() {
             <h1>Check Out</h1>
           </Card.Header>
           <Card.Body>
-              <Home fbpic={picture} fbdata={data} />
+            <Home fbpic={picture} fbdata={data} />
           </Card.Body>
         </Card>
       }
@@ -76,17 +74,15 @@ function LoginForm() {
 
 function Home({ fbpic, fbdata }) {
   return (
-    <>
-      <Card.text>
-        <>
+    <Card.Text>
+      <React.Fragment>
         <img src={fbpic} alt={fbdata.name} />
-          <h3 className="d-inline text-success mx-2">
-            Welcome back {fbdata.name}!
-          </h3>
-          <span className="my-5">Time to check out?</span>
-        </>
-      </Card.text>
-    </>
+        <h3 className="d-inline text-success mx-2">
+          Welcome back {fbdata.name}!
+        </h3>
+          <p className="my-3">Time to check out?</p>
+      </React.Fragment>
+    </Card.Text>
   )
 }
 
