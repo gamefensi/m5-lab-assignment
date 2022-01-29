@@ -33,6 +33,8 @@ class App extends Component {
       currentItems.push(getItem);
       console.log(currentItems);
       console.log(currentItems.getItem)
+    } else {
+      alert("No more items in stock!")
     }
   }
 
@@ -40,8 +42,9 @@ class App extends Component {
     const index = currentItems.indexOf(getItem)
     if (index > -1) {
       const newQty = getItem.qty++;
+      const newCartQty = getItem.cartQty--;
       currentItems.splice(index, 1);
-      this.setState({ qty: newQty })
+      this.setState({ qty: newQty, cartQty: newCartQty })
     }
     console.log(currentItems);
   }

@@ -7,7 +7,7 @@ export const Inventory = {
             image: './products/cologne.jpg',
             desc: 'Unisex Cologne',
             ratings: 3.5,
-            value: 0,
+            value: 35,
             cartQty: 0,
             qty: 5
         },
@@ -16,7 +16,7 @@ export const Inventory = {
             image: './products/iwatch.jpg',
             desc: 'Apple iWatch',
             ratings: 5,
-            value: 0,
+            value: 199,
             cartQty: 0,
             qty: 10
         },
@@ -25,7 +25,7 @@ export const Inventory = {
             image: './products/mug.jpg',
             desc: 'Unique Mug',
             ratings: 4,
-            value: 0,
+            value: 15,
             cartQty: 0,
             qty: 1
         },
@@ -34,7 +34,7 @@ export const Inventory = {
             image: './products/wallet.jpg',
             desc: 'Mens Wallet',
             ratings: 2.5,
-            value: 0,
+            value: 48,
             cartQty: 0,
             qty: 20
         },

@@ -40,7 +40,7 @@ export function DisplayProducts(props) {
                             <img onClick={() => handleShow(item)} style={{ margin: "10px 50px 10px 0", width: "150px", objectFit: "cover" }} className="img-fluid" src={item.image} alt={item.desc} />
                             <div style={{ display: "inline" }} className="col-2">
                                 <p style={{ marginRight: "10px", width: "200px" }}>In Stock:</p>
-                                <input style={{ marginRight: "10px", width: "50px", height: "50px", textAlign: "center" }} value={item.qty} disabled />
+                                <input style={{ marginRight: "10px", width: "50px", height: "50px", textAlign: "center" }} value={item.cartQty} disabled />
                             </div>
 
 
