@@ -67,7 +67,7 @@ class App extends Component {
         break;
       default:
         items.sort(function (a, b) {
-          return 0;
+          return a.id - b.id;
         });
     }
     this.setState({ ProductList: items })
