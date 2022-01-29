@@ -11,9 +11,11 @@ class App extends Component {
     this.state = {
       Products: Inventory,
       myCart: Inventory.cart,
+      ProductList: Inventory.Stock
+      // sortType: "asc",
+      // listNum: "",
     }
   }
-
   cartItemTotal = () => {
     let items = this.state.Products.Stock
     let total = items.map((item) => {
@@ -49,6 +51,27 @@ class App extends Component {
     console.log(currentItems);
   }
 
+  onSort = (items, sortType) => {
+    console.log(items);
+    console.log(sortType);
+    switch (sortType) {
+      case 'lowest':
+        items.sort(function (a, b) {
+          return a.value - b.value
+        });
+        break;
+      case 'highest':
+        items.sort(function (a, b) {
+          return b.value - a.value
+        });
+        break;
+      default:
+        items.sort(function (a, b) {
+          return 0;
+        });
+    }
+    this.setState({ ProductList: items })
+  }
   render() {
 
     return (
@@ -58,6 +81,9 @@ class App extends Component {
           cartItemTotal={this.cartItemTotal}
           handleAddToCart={this.handleAddToCart}
           handleSubFromCart={this.handleSubFromCart}
+          sortType={this.state.sortType}
+          listNum={this.state.listNum}
+          onSort={this.onSort}
         />
         {/* <div>
           {list}

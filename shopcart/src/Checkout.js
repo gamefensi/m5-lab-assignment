@@ -80,7 +80,7 @@ function Home({ fbpic, fbdata }) {
         <h3 className="d-inline text-success mx-2">
           Welcome back {fbdata.name}!
         </h3>
-          <p className="my-3">Time to check out?</p>
+        <p className="my-3">Time to check out?</p>
       </React.Fragment>
     </Card.Text>
   )

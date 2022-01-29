@@ -41,11 +41,11 @@ function DisplayCart(props) {
 				<ListGroup>
 					{unique.map((item) => (
 						<ListGroupItem style={{ padding: "10px, 0, 10px, 50px", display: "block", }} key={item.id}>
-							<div style={{fontWeight: "bold"}}>
+							<div style={{ fontWeight: "bold" }}>
 								<img onClick={() => handleShow(item)} style={{ margin: "0 20px", width: "150px", objectFit: "cover" }} className="img-fluid" src={item.image} alt={item.desc} />
 								Quantity: {item.cartQty}
 							</div>
-							<div style={{paddingLeft:"50px"}} >
+							<div style={{ paddingLeft: "50px" }} >
 								<p>{item.desc}</p>
 							</div>
 						</ListGroupItem>
@@ -79,7 +79,7 @@ function DisplayCart(props) {
 	} else {
 		return (
 			<div>
-				<img src="./mini-empty-cart.png" className="img-fluid"></img>
+				<img src="./mini-empty-cart.png" className="img-fluid" alt="empty cart"></img>
 				<h3 className="text-muted"> There are {props.cartItemTotal()} items in your cart. </h3>
 				<Link to="/">
 					<button

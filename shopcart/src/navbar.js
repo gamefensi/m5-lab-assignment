@@ -49,6 +49,9 @@ export function Nav(props) {
                 cart={props.items.cart}
                 handleAddToCart={props.handleAddToCart}
                 handleSubFromCart={props.handleSubFromCart}
+                sortType={props.sortType}
+                listNum={props.listNum}
+                onSort={props.onSort}
               />}
           />
         </Routes>

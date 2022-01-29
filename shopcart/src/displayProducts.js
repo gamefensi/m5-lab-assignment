@@ -30,27 +30,40 @@ export function DisplayProducts(props) {
 
     return (
         <div>
+            <div className="my-5 d-flex justify-content-center align-items-start">
+                <p style={{ display: "inline", marginRight: "10px" }}>Sort Price By: </p>
+                <select
+                    className="align-top"
+                    onChange={(e) => props.onSort(props.items.Stock, e.target.value)}
+                    name="sorter"
+                    id="sorter">
+                    <option value="normal">Normal</option>
+                    <option value="lowest">Lowest</option>
+                    <option value="highest">Highest</option>
+                </select>
+            </div>
             <ListGroup>
                 {props.items.Stock.map((item) => (
                     <ListGroupItem style={{ display: "block" }} key={item.id}>
                         <div className="row" style={{ padding: "10px 0 10px 50px" }}>
                             <div>
                                 {item.desc}
+                                <span
+                                    style={{
+                                        color: "red",
+                                        marginLeft: "10px",
+                                        fontWeight: "bold"
+                                    }}
+                                >
+                                    ${item.value}
+                                </span>
                             </div>
                             <img onClick={() => handleShow(item)} style={{ margin: "10px 50px 10px 0", width: "150px", objectFit: "cover" }} className="img-fluid" src={item.image} alt={item.desc} />
-                            <div style={{ display: "inline" }} className="col-2">
-                                <p style={{ marginRight: "10px", width: "200px" }}>In Stock:</p>
-                                <input style={{ marginRight: "10px", width: "50px", height: "50px", textAlign: "center" }} value={item.cartQty} disabled />
-                            </div>
-
-
-                            {/* add/sub from cart */}
-                            <div className="addSubBtns">
-                                <p>Add or Remove from cart: </p>
+                            <div className="addSubBtns col-2 align-items-center d-flex ">
                                 <button
                                     id="minusBtn"
                                     type="button"
-                                    className="btn btn-light"
+                                    className="btn btn-light border"
                                     style={{ marginRight: "10px" }}
                                     onClick={() => props.handleSubFromCart(item, cart)}
                                 >
@@ -63,8 +76,7 @@ export function DisplayProducts(props) {
                                 <button
                                     id="addBtn"
                                     type="button"
-                                    className="btn btn-light"
-                                    style={{ marginRight: "10px" }}
+                                    className="btn btn-light border"
                                     onClick={() => props.handleAddToCart(item, cart)}
                                 >
                                     <FontAwesomeIcon
@@ -73,6 +85,11 @@ export function DisplayProducts(props) {
                                     />
                                 </button>
                             </div>
+                            <div style={{ display: "inline" }} className="col">
+                                <p style={{ marginRight: "10px", width: "200px" }}>Quantity:</p>
+                                <input style={{ marginRight: "10px", width: "50px", height: "50px", textAlign: "center" }} value={item.cartQty} disabled />
+                            </div>
+                            {/* add/sub from cart */}
                         </div>
 
                     </ListGroupItem>
